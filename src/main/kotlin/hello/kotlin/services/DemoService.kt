@@ -1,10 +1,6 @@
 package hello.kotlin.services
 
 import hello.kotlin.models.Post
-import io.micronaut.core.type.Argument
-import io.micronaut.http.HttpRequest
-import io.micronaut.http.client.RxHttpClient
-import io.micronaut.http.client.annotation.Client
 import io.reactivex.Flowable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -14,19 +10,17 @@ import javax.inject.Singleton
 
 @Singleton
 class DemoService {
-    @field:Client("\${demoservice.url}")
     @Inject
-    lateinit var webClient: RxHttpClient
+    lateinit var webClient: DemoClient
 
     fun getPosts(): Flow<List<Post>> =
             flow {
-                webClient.retrieve(HttpRequest.GET<Any>("/"), Argument.listOf(Post::class.java))
+                webClient.posts()
             }
 
     fun getPostsFlowable(): Flowable<List<Post>> =
-            webClient.retrieve(HttpRequest.GET<Any>("/"), Argument.listOf(Post::class.java))
+            webClient.posts()
 
     fun getPostsFlux(): Flux<List<Post>> =
-            Flux.from(webClient.retrieve(HttpRequest.GET<Any>("/"), Argument.listOf(Post::class.java)))
-
+            Flux.from(webClient.posts())
 }
