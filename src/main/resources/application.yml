@@ -1,0 +1,6 @@
+micronaut:
+  application:
+    name: hello-kotlin
+
+demoservice:
+  url: https://my-json-server.typicode.com/aruld/demo/posts
