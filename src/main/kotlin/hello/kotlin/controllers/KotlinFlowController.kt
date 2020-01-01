@@ -1,7 +1,7 @@
 package hello.kotlin.controllers
 
 import hello.kotlin.models.Headline
-import hello.kotlin.models.KotlinFlowResponse
+import hello.kotlin.models.Post
 import hello.kotlin.services.KotlinFlowService
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.MediaType
@@ -56,19 +56,19 @@ class KotlinFlowController(private val kotlinFlowService: KotlinFlowService) {
             }
 
     @Get("/posts", produces = [MediaType.APPLICATION_JSON])
-    suspend fun getPosts(): Flow<List<KotlinFlowResponse>> {
+    suspend fun getPosts(): Flow<List<Post>> {
         logger.info("Getting posts (Kotlin) from demo service ... ")
         return kotlinFlowService.getPosts()
     }
 
     @Get("/postsFlowable", produces = [MediaType.APPLICATION_JSON])
-    fun getPostsFlowable(): Flowable<List<KotlinFlowResponse>> {
+    fun getPostsFlowable(): Flowable<List<Post>> {
         logger.info("Getting posts (RxJava) from demo service ... ")
         return kotlinFlowService.getPostsFlowable()
     }
 
     @Get("/postsFlux", produces = [MediaType.APPLICATION_JSON])
-    fun getPostsFlux(): Flux<List<KotlinFlowResponse>> {
+    fun getPostsFlux(): Flux<List<Post>> {
         logger.info("Getting posts (Reactor) from demo service ... ")
         return kotlinFlowService.getPostsFlux()
     }
