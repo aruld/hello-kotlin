@@ -13,6 +13,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import org.slf4j.LoggerFactory
+import reactor.core.publisher.Flux
 import java.time.ZonedDateTime
 
 @Controller("/")
@@ -56,14 +57,19 @@ class KotlinFlowController(private val kotlinFlowService: KotlinFlowService) {
 
     @Get("/posts", produces = [MediaType.APPLICATION_JSON])
     suspend fun getPosts(): Flow<List<KotlinFlowResponse>> {
-        logger.info("Getting posts from demo service ... ")
+        logger.info("Getting posts (Kotlin) from demo service ... ")
         return kotlinFlowService.getPosts()
     }
 
     @Get("/postsFlowable", produces = [MediaType.APPLICATION_JSON])
     fun getPostsFlowable(): Flowable<List<KotlinFlowResponse>> {
-        logger.info("Getting posts flowable from demo service ... ")
+        logger.info("Getting posts (RxJava) from demo service ... ")
         return kotlinFlowService.getPostsFlowable()
     }
 
+    @Get("/postsFlux", produces = [MediaType.APPLICATION_JSON])
+    fun getPostsFlux(): Flux<List<KotlinFlowResponse>> {
+        logger.info("Getting posts (Reactor) from demo service ... ")
+        return kotlinFlowService.getPostsFlux()
+    }
 }

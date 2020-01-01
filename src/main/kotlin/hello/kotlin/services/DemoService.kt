@@ -8,6 +8,7 @@ import io.micronaut.http.client.annotation.Client
 import io.reactivex.Flowable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import reactor.core.publisher.Flux
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,5 +25,8 @@ class DemoService {
 
     fun getPostsFlowable(): Flowable<List<Post>> =
             webClient.retrieve(HttpRequest.GET<Any>("/"), Argument.listOf(Post::class.java))
+
+    fun getPostsFlux(): Flux<List<Post>> =
+            Flux.from(webClient.retrieve(HttpRequest.GET<Any>("/"), Argument.listOf(Post::class.java)))
 
 }

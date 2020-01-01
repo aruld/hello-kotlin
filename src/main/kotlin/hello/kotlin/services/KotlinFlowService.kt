@@ -4,6 +4,7 @@ import hello.kotlin.models.KotlinFlowResponse
 import io.reactivex.Flowable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import reactor.core.publisher.Flux
 import javax.inject.Singleton
 
 @Singleton
@@ -15,5 +16,9 @@ class KotlinFlowService(private val demoService: DemoService) {
 
     fun getPostsFlowable(): Flowable<List<KotlinFlowResponse>> =
             demoService.getPostsFlowable()
+                    .map { eventList -> eventList.map { KotlinFlowResponse(name = it.title) } }
+
+    fun getPostsFlux(): Flux<List<KotlinFlowResponse>> =
+            demoService.getPostsFlux()
                     .map { eventList -> eventList.map { KotlinFlowResponse(name = it.title) } }
 }
