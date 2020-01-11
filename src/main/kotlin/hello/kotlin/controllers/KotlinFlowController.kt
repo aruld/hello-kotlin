@@ -57,7 +57,7 @@ class KotlinFlowController(private val kotlinFlowService: KotlinFlowService) {
 
     @Get("/posts", produces = [MediaType.APPLICATION_JSON])
     suspend fun getPosts(): Flow<List<Post>> {
-        logger.info("Getting posts (Kotlin) from demo service ... ")
+        logger.info("Getting posts (Kotlin Flow) from demo service ... ")
         return kotlinFlowService.getPosts()
     }
 
@@ -69,7 +69,7 @@ class KotlinFlowController(private val kotlinFlowService: KotlinFlowService) {
 
     @Get("/postsFlux", produces = [MediaType.APPLICATION_JSON])
     fun getPostsFlux(): Flux<List<Post>> {
-        logger.info("Getting posts (Reactor) from demo service ... ")
+        logger.info("Getting posts (Reactor Flux) from demo service ... ")
         return kotlinFlowService.getPostsFlux()
     }
 }
