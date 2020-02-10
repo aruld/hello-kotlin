@@ -40,9 +40,9 @@ curl http://localhost:8080/commentsFlowable
 {"id":1,"text":"Latest Comment at 2020-02-09T19:02:43.417-06:00[America/Chicago]"}{"id":2,"text":"Latest Comment at 2020-02-09T19:02:44.422-06:00[America/Chicago]"}{"id":3,"text":"Latest Comment at 2020-02-09T19:02:45.023-06:00[America/Chicago]"}{"id":4,"text":"Latest Comment at 2020-02-09T19:02:45.625-06:00[America/Chicago]"}{"id":5,"text":"Latest Comment at 2020-02-09T19:02:46.229-06:00[America/Chicago]"}
 ```
 
-**Kotlin Flow: (fixme)**
+**Kotlin Flow:**
 
 curl http://localhost:8080/comments
 ```
-
+{"id":1,"text":"Latest Comment at 2020-02-09T19:44:31.878-06:00[America/Chicago]"}{"id":2,"text":"Latest Comment at 2020-02-09T19:44:33.832-06:00[America/Chicago]"}{"id":3,"text":"Latest Comment at 2020-02-09T19:44:34.434-06:00[America/Chicago]"}{"id":4,"text":"Latest Comment at 2020-02-09T19:44:35.036-06:00[America/Chicago]"}{"id":5,"text":"Latest Comment at 2020-02-09T19:44:35.638-06:00[America/Chicago]"}
 ```

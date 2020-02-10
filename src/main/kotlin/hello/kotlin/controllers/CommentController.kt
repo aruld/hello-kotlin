@@ -7,7 +7,6 @@ import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.reactivex.Flowable
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import org.slf4j.LoggerFactory
 import reactor.core.publisher.Flux
 
@@ -17,9 +16,9 @@ class CommentController(private val commentService: CommentService) {
     private val logger = LoggerFactory.getLogger(CommentController::class.java)
 
     @Get("/comments", processes = [MediaType.APPLICATION_JSON_STREAM])
-    internal fun getPosts(): Flow<Comment> = flow {
+    internal fun getPosts(): Flow<Comment> {
         logger.info("Getting comments (Kotlin Flow) from comment service ... ")
-        commentService.getCommentsFlow()
+        return commentService.getCommentsFlow()
     }
 
     @Get("/commentsFlowable", processes = [MediaType.APPLICATION_JSON_STREAM])
